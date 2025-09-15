@@ -52,14 +52,14 @@ class File {
     properties()
     exit()
 }
-Taskbar <|-- File
+Taskbar o-- File
 
 class Edit {
     cut()
     copy()
     paste()
 }
-Taskbar <|-- Edit
+Taskbar o-- Edit
 
 class View {
     zoom()
@@ -69,7 +69,7 @@ class View {
     full_screen()
     miniature()
 }
-Taskbar <|-- View
+Taskbar o-- View
 
 class Select {
     -List select
@@ -77,16 +77,16 @@ class Select {
     free_shape()
     select_all()
 }
-Toolbar <|-- Select
+Toolbar o-- Select
 
 class Image {
-    +Option resize
-    +Option rotate
-    +Option remove_ bg
-    +Option flip
-    +Option skew
+    resize()
+    rotate()
+    remove_ bg()
+    flip()
+    skew()
 }
-Toolbar <|-- Image
+Toolbar o-- Image
 
 class Tools {
     pencil()
@@ -96,7 +96,7 @@ class Tools {
     drop()
     lens()
 }
-Toolbar <|-- Tools
+Toolbar o-- Tools
 
 class Brushes {
     -List select
@@ -105,7 +105,7 @@ class Brushes {
     caligraphy_pencil()
     ...()
 }
-Toolbar <|-- Brushes
+Toolbar o-- Brushes
 
 class Shapes {
     +Option search_field
@@ -114,13 +114,13 @@ class Shapes {
     elipse()
     ...()
 }
-Toolbar <|-- Shapes
+Toolbar o-- Shapes
 
 class Colors {
     -List colors
     -Wheel colors
 }
-Toolbar <|-- Colors
+Toolbar o-- Colors
 
 class Copilot {
     -List select
@@ -128,18 +128,18 @@ class Copilot {
     generate_erase()
     remove_bg()
 }
-Toolbar <|-- Copilot
+Toolbar o-- Copilot
 
 class Layers {
     -List select
 }
-Toolbar <|-- Layers
+Toolbar o-- Layers
 
 class Status_bar {
     +int size
     -scroll zoom
 }
-Canvas <|-- Status_bar
+Canvas o-- Status_bar
 
 class Wheel {
     +int hex_code
@@ -149,5 +149,38 @@ class Wheel {
     blue()
 }
 Colors *-- Wheel
+
+class List {
+    -List select
+    +Option option_1
+    +Option option_2
+    +...
+    expand()
+}
+List *-- Option
+
+class Option {
+    click()
+    type()
+}
+
+class User {
+    +Person
+    use(Paint)
+}
+Paint <-- User
+
+File <|-- List
+Edit <|-- List
+View <|-- List
+Select <|-- List
+Brushes <|-- List
+Colors <|-- List
+Copilot <|-- List
+Layers <|-- List
+
+Shapes <|-- Option
+Tools <|-- Option
+Image <|-- Option
 ```
-- [Link to mermaid.live editor](https://mermaid.live/edit#pako:eNp9VW1v2jAQ_iuRP20roAbKW7RPY600qdImUbXShBQZ50gsHDuyHQp07W-f48ROoLR8ujvs57m753x5QUQkgCJEGFbqJ8WpxPmKWy_4gynXwdsT5UEYvgUvKx6Y39VSS8rTQFPNoAnVJwnmO6zqkMI7-PK1sTMsvVPyRDhbQm2_rrjjfMBqu8bSk71H7t9TpYMNdeS1DwnVXX9H4bn2CaNk27DUaN_6fcfTIRaCfUrscSo7E0K5kp4zAPaeoMZrCRYW6rPClkQKZpPYgdSUYPbuj0xIehRcu7-KCsX3GRgQ74HEdYonaS0aQpfVnemjy4nDs7ssCuDOpnkhpG41I9Ch7Mps7Bgr5xaym1p3BBJQWy2K9qBhM_WCvwp7qpvM3Tx8_2eSv7Oiu9RvjeQudVJ6KiKKg4fGSsMlpFs7Lg7p0QyLQzoKkftaSwbSOamkiS9HY12q2MC5yKZkLFZEQtu3nHJqjsmLCTza-XQJLK1yLoV6gms1fdM15inzLdwYotg0tYBT8WPM3Ci6gbZ0ywbMEf7Kcep1v_pdaCq4YVH0CGcxYUo9j0EujNTBOj2NbxgtTiNqW1V5nowlP315_l2YuSOU-TIp87aG_els-94nsh0mBlxdaoAlaTl_yFJloD7u-Lo64EcKM2oWY5Ed4s67OI12sh4MBpdSaDg7qlf6qXMVFGBJsnhDgSVNTZR7mUkp2xcHpuF-DX1EW7N09pBgQp5VTmysiTxV-8yHzuEWTbyFKygTn8xuCtzIpSGmlez-NbmoX1P1nNvJWqeXCmmYWup7fAD5gYbnl-uznd77F-z7X63I9gH0lV26dh9YuGZ_1z31t1vEum1dsAz2cfV57YRkuvafvnaxdJbGmpVuXzRCVVvbYqMeqnYQirQsoYdykDmuXGQ5V0hnkMMKRcZMsNyukEExdwrM_5oa3DUpyjRD0QYzZbyySIwIzXffHcGlFssDJ_4K8ATkQpRcoygMhxYTRS9oj6L-aDQdzEc3o3A4G46NM5320AFFw-vBcD6fDKfDyfxmOg5vxq89dLR5hOafcDQJZ9ez6XQyG4_Hr_8BPZbCgw)
+- [Link to mermaid.live editor](https://mermaid.live/edit#pako:eNp9VttuGzcQ_RWBT00jC7pEFwt5ipsAAVK0gJoECAQsKO5olxCXXJBc27Jjf3t5X0qWrRdxRuQ5w5kzQz0iIkpAa0QYVuoviiuJmy131uBfTLkePP-kfDCZPA8et3xgPu83WlJeDTTVDILL7ySY32LlXQrfwh_vwrrGMhkdL0VcS_Drpy2PnP9hddhhmcheIl99o0oP9jSSextKqnP7lsKdtwmj5BBYPNqfV1eRJyMWgr1JnHDsuhZCxSvd1QDsJYHH6wluHNRbF9sQKZgL4hakpgSzFz_UQtIHwXX8qbUoKc_AgCQLJPYhnoR1EwhjVF9MHmNMHO7iYdECj2vatELqvmYEMsq8zGZdYBXNVuah5RIoQR20aPuNhs3cF9JRuKc6RB71IEzsX1zNY-SfTcVj5KRLTES0x4SMlYYLQJ-dWCLQDyOVCPQgRJNu2jGQ0agkLdNlNNadKgxa9Ow7xgpFJPRZayinZpu8xP_DiTPyb1zZYgRevr6UKeMa84ql_O0NT2Ey2sJp5QvMog6jmi3bJmBFvq8NrlLNJSj6kHCkMFfrLWiEKelgVyVmRlPZ1MHL5YzNoZ-2VRK9ERWhLIFRltYa7k-Fm1Jbyl4pDLi6QOk4espPslM1qNcTurMbkl4wo2botfWxyDR_6s2CHo1GFyIIlFlNbXX6Zv-n1VRwEwSWpC72FFgZbkR5SjfpZN9MYDKdJswrrJ4kmzCCCXl2b-J8wfPTTqrkOkO7Ce4eraVMvKHLCrgplYaC2pKnRoneNH8yKXklvSB2RD3zN3wE-Ur9zs76rVneU2um3NvJZzUe0JSbpa7RHVoYyy6f6XAP6FOWY9VwX9hHM3PJapcetH5gZMNgx7o4B0KR7Cx22Nm17T1fzXbUkHBfxeSidxq8Ri9xkraYl4HaYVpif6hnDiCPZw-ma8xjC2dP9HfTnf0zZtJvodzTburtXpr80flo-OwJe949Nh9_27qZULbcjfDMdpM4s8NkzDyxtzNXSOiJxys3cwVJZR6D7nvU-WJG_Lg6cflxmbnQENnXAK217GCIGpANtiZyOdkiXUMDW7Q2yxLLwxaZbJgzphC_jOjiMSm6qkbrPWbKWF1bmp4J_7_iFtxpsTlyko4AL0HeiI5rtL6erBwmWj-ie7SezkeL6WoyXsxWs_l0MV5-GKKjcc_Go8liuZgtF4vxarWcPg3Rg4tiPFrOV_Px7HoyWy2vZ9cf5kNk_0QJ-Xf4R2i_nv4HG99JxA)
